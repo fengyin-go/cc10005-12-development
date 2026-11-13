@@ -9,6 +9,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
+from app.demo import bootstrap_demo
 from app.routers import ROUTERS
 from app.store import store
 
@@ -24,6 +25,8 @@ app.add_middleware(
 
 for module in ROUTERS:
     app.include_router(module.router)
+
+bootstrap_demo()
 
 
 @app.get("/api/health")
